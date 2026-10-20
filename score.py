@@ -65,6 +65,10 @@ def calculate(module) -> tuple[int, dict, list]:
 
     # ── Level 2: negative tests ───────────────────────────────────────────────
     cases = module.design_negative_tests(v1, ai)
+    print("v1 paths:", {p: [m for m in i if m in {"get","put","post","delete","patch","options","head","trace"}]
+                    for p, i in v1["paths"].items()})
+    # for c in cases:
+    #     print(_digest(c["name"]) == L2_DROP, c["method"], c["path"], c["expected_status"], "|", c["name"])
     names = {_digest(item.get("name")) for item in cases}
     for n, tname in enumerate(L2_KEEP, 1):
         ok = tname in names
